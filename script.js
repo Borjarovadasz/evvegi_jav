@@ -48,7 +48,6 @@ for(const elem of formarray) {
 }
 
 
-
 for(const elem of fejarray) {
     tdcell = document.createElement('td')
     tdcell.innerHTML = elem  
@@ -85,28 +84,36 @@ function sorhozzadas(adat) {
 document.body.appendChild(form)
 
 
-
 form.addEventListener('submit', function(e) {
 
     e.preventDefault(); 
     koltoneve = document.getElementById("kolto_nev")
     koltokorszak = document.getElementById  ("korszak_neve")
     vers = document.getElementById("vers")
-
     koltonevertek = koltoneve.value
-   
     koltokorszakertek = koltokorszak.value
     versertek = vers.value
+    let valid = true
 
-
-    const ujadat = {
-        szerzonev: koltonevertek,
-        szerzokorszak: koltokorszakertek,
-        versek: versertek
+    if (versertek.split(',').length === 4){
+        alert("Csak három verset írhatsz be!")
+        return valid == false
     }
+    if(valid == true) {
+        const ujadat = {
+            szerzonev: koltonevertek,
+            szerzokorszak: koltokorszakertek,
+            versek: versertek.replaceAll(',', '|')
+            
+                
+        }
+        array.push(ujadat)
+        sorhozzadas(ujadat)
+    }
+    form.reset()
+        
     
-    array.push(ujadat)
-    sorhozzadas(ujadat)
+ 
 
 });
 
