@@ -39,6 +39,7 @@ for(const elem of formarray) {
     label.innerText = elem.label;
     const input = document.createElement('input');
     input.type = "text";
+    input.id = elem.id;
 
     divecske.className = 'div'
     divecske.appendChild(label);
@@ -93,10 +94,10 @@ form.addEventListener('submit', function(e) {
     vers = document.getElementById("vers")
 
     koltonevertek = koltoneve.value
-    
+   
     koltokorszakertek = koltokorszak.value
-    
     versertek = vers.value
+
 
     const ujadat = {
         szerzonev: koltonevertek,
@@ -106,6 +107,7 @@ form.addEventListener('submit', function(e) {
     
     array.push(ujadat)
     sorhozzadas(ujadat)
+
 });
 
 
