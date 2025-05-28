@@ -12,3 +12,11 @@
     align-items: center;   
     height: 50px;
 }
+
+.gomb {
+    background-color: aqua;
+    display: flex;
+    margin-left: 50%;
+    align-items: center;   
+    height: 50px;
+}

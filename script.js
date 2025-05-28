@@ -1,7 +1,30 @@
 const fejarray = ["Költő neve", "Korszak neve", "Vers neve"];
 
-const formarray = ["Kolto neve", "Korszak neve", "Versek vesszovel elvalasztva"];
+const array = [
+    {
+        szerzonev : "",
+        szerzokorszak : "",
+        versek : ""
+    }
+]
 
+const formarray =  [
+    { 
+    label: "Költő neve:", 
+    id: "kolto_nev", 
+    for:"kolto_nev" 
+},
+{
+    label: "Korszak neve:", 
+    id: "korszak_neve", 
+    for:"korszak_neve" 
+},
+{
+    label: "Versek vesszovel elvalasztva:", 
+    id: "vers", 
+    for:"vers"   
+},
+]
 table = document.createElement('table')
 table.className = "table"
 tbody = document.createElement('tbody')
@@ -13,7 +36,7 @@ for(const elem of formarray) {
     const divecske = document.createElement('div');
     divecske.style.marginBottom = "10px"; 
     const label = document.createElement('div'); 
-    label.innerText = elem;
+    label.innerText = elem.label;
     const input = document.createElement('input');
     input.type = "text";
 
@@ -22,6 +45,7 @@ for(const elem of formarray) {
     divecske.appendChild(input);
     form.appendChild(divecske);
 }
+
 
 
 for(const elem of fejarray) {
@@ -34,8 +58,28 @@ table.appendChild(thead)
 table.appendChild(tbody)
 document.body.appendChild(table)
 
+gombocska = document.createElement('button')
+gombocska.innerHTML = "Submit!!!!"
+gombocska.className = "gomb"
+form.appendChild(gombocska)
 
 
+function sorhozzadas(adat) {
+    const sor = document.createElement('tr');
+    const nevcella = document.createElement('td');
+    nevcella.textContent = adat.szerzonev;
+    sor.appendChild(nevcella);
+
+    const korszakcella = document.createElement('td');
+    korszakcella.textContent = adat.szerzokorszak;
+    sor.appendChild(korszakcella);
+
+    const verscella = document.createElement('td');
+    verscella.textContent = adat.versek;
+    sor.appendChild(verscella);
+
+    tbody.appendChild(sor);
+}
 
 document.body.appendChild(form)
 
@@ -44,6 +88,24 @@ document.body.appendChild(form)
 form.addEventListener('submit', function(e) {
 
     e.preventDefault(); 
+    koltoneve = document.getElementById("kolto_nev")
+    koltokorszak = document.getElementById  ("korszak_neve")
+    vers = document.getElementById("vers")
 
+    koltonevertek = koltoneve.value
+    
+    koltokorszakertek = koltokorszak.value
+    
+    versertek = vers.value
+
+    const ujadat = {
+        szerzonev: koltonevertek,
+        szerzokorszak: koltokorszakertek,
+        versek: versertek
+    }
+    
+    array.push(ujadat)
+    sorhozzadas(ujadat)
 });
+
 
